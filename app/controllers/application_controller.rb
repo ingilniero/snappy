@@ -18,5 +18,7 @@ class ApplicationController < ActionController::Base
       !current_user.nil?
     end
 
-
+    def auth
+      redirect_to login_url, alert: 'You must login to access that page' unless logged_in?
+    end
 end
