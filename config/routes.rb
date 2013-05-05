@@ -4,6 +4,11 @@ Snappy::Application.routes.draw do
   resources :users, only: [:new, :create]
   resources :sessions, only: [:new, :create]
 
+  get '/register', to: 'users#new'
+  get '/login', to: 'sessions#new'
+  delete '/logout', to: 'sessions#destroy'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
