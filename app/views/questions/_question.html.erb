@@ -4,4 +4,5 @@
   <% if on_your_questions_page? %>
   <%= display_solved(question) %>  - <%= link_to 'Edit', edit_question_path(question) %>
   <% end  %>
+  - <%= pluralize(question.answers.count, 'answer') %>
 </li>
