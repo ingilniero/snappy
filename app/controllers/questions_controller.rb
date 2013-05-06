@@ -11,11 +11,15 @@ class QuestionsController < ApplicationController
 
     if @question.save
       flash[:success] = 'Your question has been posted!'
-      redirect_to root_url
+      redirect_to @question
     else
       @questions = Question.all.unsolved(params[:page])
       render 'index'
     end
+  end
+
+  def show
+     @question = Question.find(params[:id])
   end
 
   private
