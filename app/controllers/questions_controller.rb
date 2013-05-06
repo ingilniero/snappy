@@ -1,8 +1,9 @@
 class QuestionsController < ApplicationController
-  before_filter :auth, only: [:create]
+  before_action :auth, only: [:create]
 
   def index
     @question = Question.new
+    @questions = Question.all.unsolved(params[:page] )
   end
 
   def create
@@ -12,6 +13,7 @@ class QuestionsController < ApplicationController
       flash[:success] = 'Your question has been posted!'
       redirect_to root_url
     else
+      @questions = Question.all.unsolved(params[:page])
       render 'index'
     end
   end

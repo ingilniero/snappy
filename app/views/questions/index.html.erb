@@ -8,3 +8,16 @@
     <p>Please login to ask or answer questions.</p>
   <% end  %>
 </div>
+<!-- end ask -->
+<div id="questions">
+  <h2>Unsolved Questions</h2>
+  <% if @questions.any? %>
+    <ul>
+      <%= render @questions %>
+    </ul>
+    <%= paginate @questions %>
+  <% else %>
+    <p>No questions have benn asked.</p>
+  <% end %>
+</div>
+<!-- end questions -->
