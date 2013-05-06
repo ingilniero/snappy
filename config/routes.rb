@@ -3,7 +3,9 @@ Snappy::Application.routes.draw do
 
   resources :users, only: [:new, :create]
   resources :sessions, only: [:new, :create]
-  resources :questions, except: [:new]
+  resources :questions, except: [:new] do
+    resources :answers, only: [:create]
+  end
 
   get '/register', to: 'users#new'
   get '/login', to: 'sessions#new'

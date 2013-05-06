@@ -6,3 +6,13 @@
 <p>
   <%= @question.body %>
 </p>
+
+<div id="post-answer">
+  <h2>Answer this Question</h2>
+  <% if logged_in?  %>
+    <%= render 'answers/answer_form' %>
+  <% else  %>
+    <p>Please login to post an answer fot his question.</p>
+  <% end  %>
+</div>
+<!-- end post-answer -->
