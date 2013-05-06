@@ -9,6 +9,7 @@ class AnswersController < ApplicationController
       flash[:success] = 'Your answer has been posted!'
       redirect_to @question
     else
+      @question = Question.find(params[:question_id])
       render 'questions/show'
     end
   end

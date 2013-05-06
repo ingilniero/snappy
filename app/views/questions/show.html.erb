@@ -7,6 +7,18 @@
   <%= @question.body %>
 </p>
 
+<div id="answers">
+  <h2>Answers</h2>
+  <% if @question.answers.any? %>
+    <ul>
+      <%= render @question.answers %>
+    </ul>
+  <% else %>
+    <p>This questions has not been answered yet.</p>
+  <% end %>
+</div>
+<!-- end answers -->
+
 <div id="post-answer">
   <h2>Answer this Question</h2>
   <% if logged_in?  %>
