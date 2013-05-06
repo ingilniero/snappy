@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :auth, only: [:create]
+  before_action :auth, only: [:create, :your_questions]
 
   def index
     @question = Question.new
@@ -20,6 +20,10 @@ class QuestionsController < ApplicationController
 
   def show
      @question = Question.find(params[:id])
+  end
+
+  def your_questions
+    @questions = current_user.your_questions(params[:page])
   end
 
   private

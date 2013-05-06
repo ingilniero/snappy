@@ -19,6 +19,9 @@
       </li>
       <% if logged_in? %>
         <li>
+          <%= link_to "Your Q's", your_questions_path %>
+        </li>
+        <li>
           <%= link_to "Logout (#{current_user.username})", logout_path, method: 'delete' %>
         </li>
       <% else %>

@@ -8,6 +8,7 @@ Snappy::Application.routes.draw do
   get '/register', to: 'users#new'
   get '/login', to: 'sessions#new'
   delete '/logout', to: 'sessions#destroy'
+  get '/your_questions', to: 'questions#your_questions'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
