@@ -1,22 +1,15 @@
 class SessionsController < ApplicationController
   def new
+    flash.now[:error] = warden.message if warden.message.present?
   end
 
   def create
-    user = User.find_by(username: sessions_params[:username])
-
-    if user and user.authenticate(sessions_params[:password])
-      login user
-      flash[:success] = 'You are now logged in!'
-      redirect_to root_url
-    else
-      flash.now[:error] = 'Your username/password was incorrect'
-      render 'new'
-    end
+    warden.authenticate!
+    redirect_to root_url
   end
 
   def destroy
-    session[:user_id] = nil
+    warden.logout
     redirect_to root_url, notice: 'You are now logged out!'
   end
 

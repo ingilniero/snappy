@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0.beta1'
 gem 'bcrypt-ruby'
 gem 'kaminari'
+gem 'warden'
 
 gem 'sqlite3'
 

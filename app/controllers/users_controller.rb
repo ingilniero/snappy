@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new user_params
     if @user.save
-      login @user
+      warden.set_user @user
       flash[:success] = 'Thanks for registering'
       redirect_to root_url
     else

@@ -7,8 +7,12 @@ Snappy::Application.routes.draw do
     resources :answers, only: [:create]
   end
 
-  get '/register', to: 'users#new'
-  get '/login', to: 'sessions#new'
+  scope constraints: lambda { |r| r.env['warden'].user.nil? } do
+    get '/register', to: 'users#new'
+    get '/login', to: 'sessions#new'
+  end
+
+
   delete '/logout', to: 'sessions#destroy'
   get '/your_questions', to: 'questions#your_questions'
 
