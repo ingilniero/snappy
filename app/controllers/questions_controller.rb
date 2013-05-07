@@ -42,6 +42,10 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def search
+    @questions = Question.search(params)
+  end
+
   private
     def question_params
       params.require(:question).permit(:body, :solved)

@@ -6,4 +6,8 @@ class Question < ActiveRecord::Base
   validates :solved, inclusion: { in: [true, false] }
 
   scope :unsolved, lambda { |page = 1| where(solved: false).order('created_at DESC').page(page).per(3) }
+
+  def self.search(params)
+    where('body LIKE ?', "%#{params[:keyword]}%").order('created_at DESC').page(params[:page]).per(3)
+  end
 end

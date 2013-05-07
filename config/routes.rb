@@ -12,6 +12,8 @@ Snappy::Application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get '/your_questions', to: 'questions#your_questions'
 
+  get '/search', to: 'questions#search'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
