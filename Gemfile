@@ -22,6 +22,17 @@ end
 
 gem 'jquery-rails'
 
+group :development, :test do
+  gem "rspec-rails", "~> 2.13.0"
+  gem "factory_girl_rails", "~> 4.2.1"
+end
+
+group :test do
+  gem "faker", "~> 1.1.2"
+  gem "capybara", "~> 2.0.2"
+  gem "database_cleaner", "~> 0.9.1"
+  gem "launchy", "~> 2.2.0"
+end
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
