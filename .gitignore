@@ -14,3 +14,9 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore vim generated files
+*.swp
+
+# Ignore rbenv configuration file
+*.ruby-version
