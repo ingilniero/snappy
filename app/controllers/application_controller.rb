@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     end
 
     def warden
-      env['warden']
+      request.env['warden']
     end
 
     def login(user)
