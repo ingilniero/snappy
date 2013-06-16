@@ -15,6 +15,9 @@ ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
 RSpec.configure do |config|
   config.include Warden::Test::ControllerHelpers, type: :controller
+  config.include Warden::Test::Helpers
+  config.after{ Warden.test_reset! }
+
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
