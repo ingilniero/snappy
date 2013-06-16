@@ -74,8 +74,8 @@ describe QuestionsController do
   describe "GET #search" do
     before :each do
       create(:question)
-      @question = create(:question, body: "Lorem ipsum sit amet?")
-      get :search, keyword: "Lorem"
+      @question = create(:question, body: "Is this real life?")
+      get :search, keyword: "real life"
     end
 
     it "populates an array of questions that match the keyword" do
