@@ -26,13 +26,14 @@ describe QuestionsController do
   end
 
   describe "GET #show" do
+    let(:question) { create(:question) }
+
     before :each do
-      @question = create(:question)
-      get :show, id: @question 
+      get :show, id: question 
     end
     
     it "assigns the requested question to @question" do
-      expect(assigns(:question)).to eq @question
+      expect(assigns(:question)).to eq question
     end
 
     it "assigns a new Answer to @answer" do
@@ -45,13 +46,14 @@ describe QuestionsController do
   end
 
   describe "GET #edit" do
+    let(:question) { create(:question, user: user) }
+
     before :each do
-      @question = create(:question, user: user)
-      get :edit, id: @question
+      get :edit, id: question
     end
 
     it "assigns the requested question to @question" do
-      expect(assigns(:question)).to eq @question
+      expect(assigns(:question)).to eq question
     end
 
     it "renders the :edit template" do
@@ -60,26 +62,28 @@ describe QuestionsController do
   end
 
   describe "GET #your_questions" do
+    let(:question) { create(:question, user: user) }
+
     before :each do
       create(:question)
-      @question = create(:question, user: user)
       get :your_questions
     end
 
     it "populates an array of the current user's questions" do
-      expect(assigns(:questions)).to match_array [@question]
+      expect(assigns(:questions)).to match_array [question]
     end
   end
   
   describe "GET #search" do
+    let(:question) { create(:question, body: "Is this real life?") }
+    
     before :each do
       create(:question)
-      @question = create(:question, body: "Is this real life?")
       get :search, keyword: "real life"
     end
 
     it "populates an array of questions that match the keyword" do
-      expect(assigns(:questions)).to match_array [@question]
+      expect(assigns(:questions)).to match_array [question]
     end
   end
 
@@ -108,38 +112,36 @@ describe QuestionsController do
   end
   
   describe "PUT #update" do
-    before :each do
-      @question = create(:question, body: "Lorem ipsum dolor?", user: user)
-    end
+    let(:question) { create(:question, body: "Lorem ipsum dolor?", user: user) }
 
     it "locates the request question" do
-      put :update, id: @question, question: attributes_for(:question)
-      expect(assigns(:question)).to eq(@question)
+      put :update, id: question, question: attributes_for(:question)
+      expect(assigns(:question)).to eq(question)
     end
 
     context "with valida data" do
       before :each do
-        put :update, id: @question, question: { body: "Lorem ipsum dolor sit amet?" }
+        put :update, id: question, question: { body: "Lorem ipsum dolor sit amet?" }
       end
 
       it "changes question's attributes" do
-        @question.reload
-        expect(@question.body).to eq("Lorem ipsum dolor sit amet?")
+        question.reload
+        expect(question.body).to eq("Lorem ipsum dolor sit amet?")
       end
 
       it "redirets to the question detail" do
-        expect(response).to redirect_to @question
+        expect(response).to redirect_to question
       end
     end
 
     context "with invalid data" do
       before :each do
-        put :update, id: @question, question: attributes_for(:invalid_question)
+        put :update, id: question, question: attributes_for(:invalid_question)
       end
 
       it "doesn't change question's attributes" do
-        @question.reload
-        expect(@question.body).to_not eq(nil)
+        question.reload
+        expect(question.body).to_not eq(nil)
       end
 
       it "renders the :edit template" do
