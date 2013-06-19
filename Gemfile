@@ -31,7 +31,7 @@ end
 group :test do
   gem "faker", "~> 1.1.2"
   gem "capybara", "~> 2.0.2"
-  gem "database_cleaner", "~> 0.9.1"
+  gem "database_cleaner", "~> 1.0.0.rc1"
   gem "launchy", "~> 2.2.0"
 end
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
